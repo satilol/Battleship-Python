@@ -1,0 +1,4 @@
+# Battleship Game project
+# No external Python packages required
+
+python>=3.10
