@@ -1,40 +1,40 @@
 # **Battleship Game**
 
 ## **Input Format**
-- Игрок вводит ход как row column (например: 3 5).
-- Корабли считываются из CSV файлов (ship_id,row,col).
-- Ботские корабли генерируются автоматически и сохраняются в bot_ships.csv.
+- The player enters a move as row column (e.g., 3 5).
+- Ships are read from CSV files (ship_id,row,col).
+- Bot ships are generated automatically and saved in bot_ships.csv.
 
 
 ## **Ship Placement Validation**
-- Проверяются границы доски (0 ≤ row,column < 10).
-- Запрещено перекрытие кораблей.
-- Корабли имеют корректную длину.
-- Некорректные или дублирующие координаты игнорируются.
+- Board boundaries are checked: 0 ≤ row, column < 10.
+- Ship overlapping is not allowed.
+- Ships must have the correct length.
+- Invalid or duplicate coordinates are ignored.
 
 
 ## **Updating and Displaying Game State**
-- Доска 10×10, символы:
-    - ~ — пустая клетка 
-    - S — корабль (скрыт на доске бота)
-    - X — попадание
-    - M — промах
+- The board is 10×10, with symbols:
+    - ~ — empty cell
+    - S — ship (hidden on the bot’s board)
+    - X — hit
+    - M — miss
 
-После каждого хода:
-    - Проверяется попадание или уничтожение корабля.
-    -Если корабль уничтожен, соседние 8 клеток автоматически помечаются как M.
-    - Обновляется CSV файл data/game_state.csv с колонками:    
+After each move:
+    - Check if a ship is hit or destroyed.
+    - If a ship is destroyed, the 8 surrounding cells are automatically marked as M.
+    - Update the CSV file data/game_state.csv with columns:
         turn, player_move, player_result, bot_move, bot_result, player_board, bot_board.
-    - В терминале отображаются обе доски с актуальным состоянием.
+    - Both boards are displayed in the terminal with the current state.
 
 
 ## **Bot Logic**
-- Бот использует target_mode: после попадания проверяет соседние клетки.
-- После уничтожения корабля возвращается к случайному выбору клетки.
+- The bot uses target mode: after a hit, it checks neighboring cells.
+- After destroying a ship, it returns to randomly selecting a cell.
  
  
 ## **Design Decisions & Trade-offs**
-- CSV для хранения состояния игры: удобно для анализа, но файл может быстро расти.
-- Разделение функций: для отображения, обновления досок и сохранения состояния.
-- Простая валидация ввода: предотвращает ошибки, без сложной обработки пользовательских вводов.
-- Цель бота: эффективная, но простая стратегия поиска кораблей.
+- Using CSV to store game state: convenient for analysis, but the file can grow quickly.
+- Separation of functions: for displaying, updating boards, and saving the state.
+- Simple input validation: prevents errors without complex user input handling.
+- Bot strategy: efficient but simple for finding ships.
