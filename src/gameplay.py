@@ -89,7 +89,7 @@ def print_board(board, hide_ships=False):
                 display_row.append("~")
             else:
                 display_row.append(cell)
-        print(str(i) + " " + " ".join(row))
+        print(str(i) + " " + " ".join(display_row))
         
         
 def mark_misses(board, ship):
